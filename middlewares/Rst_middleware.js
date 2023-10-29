@@ -4,8 +4,13 @@ const validationEmail = require('../controller/registerdStudents')
 
 //  this Function Checked user add In DB Or NOt ==========
 const Checked_user = async (req, res, next)=>{
-    const {email} = req.body;
+    const {studentName, email, password} = req.body;
     cleanedEmail = email.trim().toLowerCase()
+    
+    if(studentName == '' || password == ''){
+        res.status(400).json({msg : 'All Inputs required'})
+      }
+      else{
 
     if(validationEmail.isValidEmail(cleanedEmail)){
     const user_confirmed = await Rst_schema.Student_Register.findOne({where: {email : cleanedEmail}})
@@ -17,6 +22,7 @@ const Checked_user = async (req, res, next)=>{
   }else{
      res.status(400).json({ error: 'Please provide a full email address like @gmail.com'});
   }
+}
 }
 
 //  Exports ============

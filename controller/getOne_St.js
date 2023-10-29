@@ -11,7 +11,7 @@ const get_st = async (req, res)=>{
      if(student){
         res.status(200).json({data: student})
      }else{
-        res.status(301).json({msg: "User Not Found"})
+        res.status(404).json({msg: "User Not Found"})
      }
    }catch(err){
      res.status(400).json({msg: err})

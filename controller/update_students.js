@@ -12,12 +12,13 @@ const updateUser = async (req, res)=>{
     studentName = studentName.trim().toLowerCase();
     cleanedEmail = email.trim().toLowerCase();
     password = password.trim().toLowerCase();
-    
-    try{
+
+    if(studentName != '' && password != ''){
+          
         const student = await st_schema.Student_Register.findByPk(userID)
 
     if(!student){
-        res.status(304).json({msg: "User Not Found"})
+        res.status(404).json({msg: "User Not Found"})
     }
 
     if(validationEmail.isValidEmail(cleanedEmail)){
@@ -31,8 +32,8 @@ const updateUser = async (req, res)=>{
     }else{
         res.status(400).json({ error: 'Please provide a full email address like @gmail.com'});
     }
-    }catch(err){
-        res.status(400).json({error: err})
+    }else{
+        res.status(400).json({msg: 'student updation Failed'})
     }
     
 }

@@ -25,7 +25,7 @@ const createStudent = async (req, res)=>{
         res.status(200).json({msg: "student Register Successfully in dataBase", data: result, Token: token})
    })
     }catch(err){
-        res.status(400).json({errMassage: err})
+        res.status(400).json({err: "Failed to register a student"})
     }
 }else {
     res.status(400).json({ error: 'Please provide a full email address like @gmail.com'});

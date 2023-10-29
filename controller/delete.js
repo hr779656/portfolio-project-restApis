@@ -18,11 +18,11 @@ const Delete_func = async (req, res)=>{
                 res.status(200).json({msg: 'Delete This Student', data : student_data})
             }
             else{
-                res.status(301).json({msg: 'user not Found'})
+                res.status(404).json({msg: 'user not Found'})
             }
 
     }catch(err){
-        res.status(401).json({msg: err})
+        res.status(400).json({err: "failed Opration Delete"})
     }
 }
 
